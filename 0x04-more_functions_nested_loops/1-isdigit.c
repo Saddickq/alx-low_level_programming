@@ -1,15 +1,14 @@
 #include "main.h"
 
 /**
- * int _isdigit - checks for digit
- *
- * return: 1 if c is a digit and 0 otherwise
+ *_isdigit - checks for digit
+ *@c: variable to be checked
+ *Return: 1 if c is a digit and 0 otherwise
  */
 
 int _isdigit(int c)
 {
-	int number;
-	if (number >= 0 && number < 10)
+	if (c >= 0 && c < 10)
 	{
 		return (1);
 	}
