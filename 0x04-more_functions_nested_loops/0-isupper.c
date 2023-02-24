@@ -10,9 +10,7 @@
 
 int _isupper(int c)
 {
-	char letter;
-
-	if ((letter >= 'A') && (letter <= 'Z'))
+	if ((c >= 'A') && (c <= 'Z'))
 	{
 		return (1);
 	}
