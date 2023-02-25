@@ -1,0 +1,25 @@
+#include "main.h"
+
+/**
+ *more_numbers - prints 0 to 14 10 times.
+ *@lines: stores the number of lines the code cover
+ *@num: stores the inner loop
+ *Return: void
+ */
+
+void more_numbers(void)
+{
+	int lines;
+
+	for (lines = 0; lines < 10; lines++)
+	{
+		int num;
+
+		for (num = 0; num <= 14; num++)
+		{
+			_putchar(num + '0');
+		}
+		_putchar('\n');
+	}
+	_putchar('\n');
+}
