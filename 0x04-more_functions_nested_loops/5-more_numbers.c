@@ -2,8 +2,7 @@
 
 /**
  *more_numbers - prints 0 to 14 10 times.
- *@lines: stores the number of lines the code cover
- *@num: stores the inner loop
+ *
  *Return: void
  */
 
