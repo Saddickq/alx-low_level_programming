@@ -8,16 +8,23 @@
  */
 int prime(int x, int y)
 {
-	if (x < 2 || y % x == 0)
+	if (x <= 1)
 	{
 		return (0);
 	}
-	else if (x > y / 2)
+	if (x == 2 || x == 3)
 	{
 		return (1);
 	}
-	else
-		return (prime(x + 1, y));
+	if (x % y == 0)
+	{
+		return (0);
+	}
+	if (y * y > x)
+	{
+		return (1);
+	}
+	return (prime(x, y + 1));
 }
 
 /**
@@ -27,9 +34,5 @@ int prime(int x, int y)
  */
 int is_prime_number(int n)
 {
-	if (n == 2)
-	{
-		return (1);
-	}
-	return (prime(2, n));
+	return (prime(n, 2));
 }
