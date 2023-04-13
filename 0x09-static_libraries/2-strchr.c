@@ -1,8 +1,9 @@
-#include "main.h"
+nclude "main.h"
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <string.h>
-
+char *_strchr(char *s, char c)
 {
-	return
+	    return strchr(s, c);
+}

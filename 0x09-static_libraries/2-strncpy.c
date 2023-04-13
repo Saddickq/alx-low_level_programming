@@ -1,9 +1,9 @@
 #include "main.h"
-#include <string.h>
 #include <stdio.h>
-
-
-int _strlen(char *s)
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+char *_strncpy(char *dest, char *src, int n)
 {
-	return (strlen(s));
+	    return strncpy(dest, src, n);
 }
