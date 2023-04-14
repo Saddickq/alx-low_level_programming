@@ -25,15 +25,15 @@ int main(int argc, char *argv[])
 
 		while (arg[j] != '\0')
 		{
-			if (!isdigit(arg[j])
+			if (!isdigit(arg[j]))
 			{
-						printf("Error\n");
-					j++;
-					return (1);
-					}
-					}
-					sum += atoi(arg);
-					}
-					printf("%d\n"' sum);
-					return (0);
-					}
+				printf("Error\n");
+				return (1);
+			}		
+			j++;
+		}
+		sum += atoi(arg);
+	}
+	printf("%d\n"' sum);
+	return (0);
+}
