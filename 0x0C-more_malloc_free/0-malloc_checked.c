@@ -8,9 +8,9 @@
  */
 void *malloc_checked(unsigned int b)
 {
-	unsigned int *ptr;
+	void *ptr;
 
-	ptr = (unsigned int *)malloc(sizeof(*ptr) * b);
+	ptr = malloc(sizeof(*ptr) * b);
 	if (ptr == NULL)
 	{
 		exit(98);
