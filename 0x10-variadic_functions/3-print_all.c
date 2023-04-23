@@ -1,51 +1,90 @@
 #include <stdarg.h>
-#include "variadic_functions.h"
 #include <stdio.h>
-/**
- * print_all - prints all types
- * @format: a string of characters
- */
+#include "variadic_functions.h"
 
+/**
+ * print_char - Prints a character
+ * @valist: A va_list of arguments
+ */
+void print_char(va_list valist)
+{
+	printf("%c", va_arg(valist, int));
+}
+
+/**
+ * print_integer - Prints an integer
+ * @valist: A va_list of arguments
+ */
+void print_integer(va_list valist)
+{
+	printf("%d", va_arg(valist, int));
+}
+
+/**
+ * print_float - Prints a float
+ * @valist: A va_list of arguments
+ */
+void print_float(va_list valist)
+{
+	printf("%f", va_arg(valist, double));
+}
+
+/**
+ * print_string - Prints a string
+ * @valist: A va_list of arguments
+ */
+void print_string(va_list valist)
+{
+	char *str = va_arg(valist, char *);
+
+	if (str == NULL)
+	{
+		printf("(nil)");
+		return;
+	}
+	printf("%s", str);
+}
+
+/**
+ * print_all - Prints anything
+ * @format: A list of types of arguments passed to the function
+ * c: char
+ * i: integer
+ * f: float
+ * s: char * (if the string is NULL, print (nil) instead)
+ */
 void print_all(const char * const format, ...)
 {
-	va_start(args, format);
-	int i = 0;
-	char c;
-	float f;
-	char *s;
-	va_list args;
+	va_list valist;
+	int i = 0, j;
 
-	while (format && format[i])
+	char *separator = "";
+
+	format_t format_list[] = {
+		{'c', print_char},
+		{'i', print_integer},
+		{'f', print_float},
+		{'s', print_string},
+		{'\0', NULL}
+	};
+
+	va_start(valist, format);
+	while (format != NULL && format[i])
 	{
-		switch (format[i])
+		j = 0;
+		while (format_list[j].type != '\0')
 		{
-			case 'c':
-				c = va_arg(args, int);
-				printf("%c", c);
-				break;
-			case 'i':
-				i = va_arg(args, int);
-				printf("%d", i);
-				break;
-			case 'f':
-				f = va_arg(args, double);
-				printf("%f", f);
-				break;
-			case 's':
-				s = va_arg(args, char *);
-				if (s == NULL)
-					printf("(nil)");
-				else
-					printf("%s", s);
-				break;
-			default:
-				break;
+			if (format_list[j].type == format[i])
+			{
+				printf("%s", separator);
+				format_list[j].func(valist);
+				separator = ", ";
+			}
+			j++;
 		}
-		if (format[i + 1] && (format[i] == 'c' || format[i] == 'i' || format[i] == 'f' || format[i] == 's'))
-			printf(", ");
 		i++;
 	}
 	printf("\n");
-	va_end(args);
+	va_end(valist);
 }
 
