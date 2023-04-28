@@ -5,23 +5,24 @@
  * @accept: the prefix to be measured
  * Return: number of bytes in initial segment of s
  */
-
 unsigned int _strspn(char *s, char *accept)
 {
-	int z = 0, x, y;
+	unsigned int count = 0;
+	int j;
 
-	for (x = 0; s[x] != '\0'; x++)
+	for (int i = 0; s[i]; i++)
 	{
-		if (s[x] != 32)
+		for (j = 0; accept[j]; j++)
 		{
-			for (y = 0; accept[y] != '\0'; y++)
+			if (s[i] == accept[j])
 			{
-				if (s[x] == accept[y])
-					z++;
+				count++;
+				break;
 			}
 		}
-		else
-			return (z);
+		if (!accept[j])
+			break;
 	}
-	return (z);
+	return count;
 }
+
