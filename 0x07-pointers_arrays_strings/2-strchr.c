@@ -7,7 +7,7 @@
  * Return: pointer if c is found or NULL if not found
  */
 
-char *_strchr(char *s, char c);
+char *_strchr(char *s, char c)
 {
 	int i = 0;
 
@@ -16,10 +16,6 @@ char *_strchr(char *s, char c);
 		if (s[i] == c)
 		{
 			return (s);
-		}
-		else
-		{
-			return (NULL);
 		}
 		i++;
 	}
