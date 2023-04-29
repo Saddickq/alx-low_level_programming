@@ -7,7 +7,6 @@
  * Return: A pointer to the beginning of the located
  * substring or NULL, if substring is not found
  */
-
 char *_strstr(char *haystack, char *needle)
 {
 	char *h = haystack;
@@ -16,24 +15,18 @@ char *_strstr(char *haystack, char *needle)
 	while (*h)
 	{
 		n = needle;
-		h = haystack;
-		while (*n)
+		while (*n && (*h == *n))
 		{
-			if (*h == *n)
-			{
-				n++;
-				h++;
-			}
-			else
-			{
-				break;
-			}
+			n++;
+			h++;
 		}
 		if (*n == '\0')
 		{
 			return (haystack);
-			haystack++;
 		}
+		haystack++;
+		h = haystack;
 	}
 	return (0);
 }
+
