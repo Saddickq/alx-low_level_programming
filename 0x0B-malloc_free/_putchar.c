@@ -2,8 +2,8 @@
 #include <unistd.h>
 
 /**
- * _putchar - prints a character 
- * @c: character to print 
+ * _putchar - prints a character
+ * @c: character to print
  * Return: character
  */
 
