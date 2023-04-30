@@ -9,22 +9,14 @@
  */
 int *array_range(int min, int max)
 {
-	int *arr;
-	int size, i, number;
+	int *m, i;
 
 	if (min > max)
-	{
 		return (NULL);
-	}
-	size = (max - min) + 1;
-	arr = malloc(sizeof(int) * size);
-	if (arr == NULL)
-	{
+	m = malloc((max - min + 1) * sizeof(*m));
+	if (m == NULL)
 		return (NULL);
-	}
-	for (number = min, i = 0; min <= max; number++, i++)
-	{
-		*(arr + i) = number;
-	}
-	return (arr);
+	for (i = 0; min + i <= max; i++)
+		m[i] = min + i;
+	return (m);
 }
