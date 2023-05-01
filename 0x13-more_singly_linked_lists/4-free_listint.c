@@ -1,21 +1,20 @@
 #include "lists.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * print_listint -  prints all element in listint_t list.
- * @h: list
- * Return: number of elements
+ * free_listint -  frees a list.
+ * @head: pointer to the beginning of the list
+ * Return: void
  */
 
-size_t print_listint(const listint_t *h)
+void free_listint(listint_t *head)
 {
-	size_t indx = 0;
+	listint_t *next;
 
-	while (h != NULL)
+	while (head != NULL)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
-		indx++;
+		next = head->next;
+		free(head);
+		head = next;
 	}
-	return (indx);
 }
