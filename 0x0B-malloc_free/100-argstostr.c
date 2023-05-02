@@ -2,8 +2,8 @@
 #include "main.h"
 /**
  * argstostr - Concatenates all the arguments of a program
- * @ac: The argument count
- * @av: An array of strings containing the arguments
+ * @argc: The argument count
+ * @argv: An array of strings containing the arguments
  * Return: A pointer to the new string, or NULL if it fails
  */
 char *argstostr(int argc, char **argv)
