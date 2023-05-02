@@ -6,16 +6,16 @@
  * @h : pointer
  * Return: number of nodes
  */
-
 size_t print_listint(const listint_t *h)
 {
-	size_t counter = 0;
+	unsigned int nodes = 0;
+	const listint_t *new_node = h;
 
-	while (h != NULL)
+	for (; new_node; new_node = new_node->next)
 	{
-		printf("%d\n", h->n);
-		h = h->next;
-		counter++;
+		printf("%d\n", new_node->n);
+		nodes++;
 	}
-	return (counter);
+
+	return (nodes);
 }
