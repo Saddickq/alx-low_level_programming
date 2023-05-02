@@ -1,10 +1,10 @@
 #include <stdarg.h>
-#include <stdio.h>
 #include "variadic_functions.h"
 
 /**
- * print_char - Prints a character
- * @valist: A va_list of arguments
+ * print_all - Prints a everything
+ * @format: A constant format
+ * Return: void
  */
 void print_all(const char * const format, ...)
 {
