@@ -15,5 +15,5 @@ int get_endianness(void)
         return 1;
     }
     else
-        return 0;  // Big endian
+        return 0;
 }
