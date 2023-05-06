@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * flip_bit - number of bits to flip togo from n to m
+ * flip_bits - number of bits to flip togo from n to m
  * @n: beginning or start point
  * @m: destination
  * Return: number of bits flipped

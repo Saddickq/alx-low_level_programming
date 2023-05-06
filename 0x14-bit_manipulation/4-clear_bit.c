@@ -2,9 +2,9 @@
 
 /**
  * clear_bit - set a bit to 0
- * *n : pointer to number
+ * @n : pointer to number
  * @index: position to clear
- * Return : on success 1
+ * Return: on success 1
  */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
