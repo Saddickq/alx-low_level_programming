@@ -1,8 +1,9 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 /**
- * read-textfile - a function that reads a text file
- * @file: the fileto read from
+ * read_textfile - a function that reads a text file
+ * @filename: the fileto read from
  * @letters: number of letter to read
  * Return: actual number of letters it could read
  */
@@ -38,4 +39,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		close(fp);
 		return (0);
 	}
+	free(buffer);
+	close(fp);
+	return (nread);
 }
