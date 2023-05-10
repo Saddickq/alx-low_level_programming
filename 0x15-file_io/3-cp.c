@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #define PERMS (S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH)
 #define BUFFER_SIZE 1024
@@ -16,10 +17,12 @@ void close_fd(int file_des)
 
 	if (outcome < 0)
 	{
-		dprint(STDERR_FILENO, "Error: Can't close %s\n", file_des);
-                exit(100);
+		dprintf(STDERR_FILENO, "Error: Can't close %d\n", file_des);
+		exit(100);
 	}
-}		
+	else
+		close(file_des);
+}
 
 /**
  * main - a program the copies file_from to file_to
@@ -27,47 +30,48 @@ void close_fd(int file_des)
  * @argv: aargument vector
  * Return: 1 on success
  */
-int main(int argc, char **argv[])
+int main(int argc, char *argv[])
 {
-	ssize_t *buffer;
+	char buffer[BUFFER_SIZE];
 	int file_to, file_from;
-	ssize_t nread, nwrite;
+	ssize_t nread;
 
 	if (argc != 3)
 	{
-		dprint(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 	file_from = open(argv[1], O_RDONLY);
-	if (file_from == NULL)
+	if (file_from <0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, PERMS);
-	if (file_to == NULL)
+	if (file_to < 0)
 	{
-		dprint(STDERR_FILENO, "Error: Can't write to %S\n" argv[2]);
-		close(file_from);
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		close_fd(file_from);
 		exit(99);
 	}
-	nread = read(file_from, buffer, BUFFER_SIZE);
+	while((nread = read(file_from, buffer, BUFFER_SIZE)) > 0)
+	{
+		if (write(file_to, buffer, nread) != nread)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+	  		close_fd(file_from);
+			close_fd(file_to);
+			exit(99);
+		}
+	}
 	if (nread < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close(file_from);
-		close(file_to);
-                exit(98);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[2]);
+		close_fd(file_from);
+		close_fd(file_to);
+		exit(98);
 	}
-	nwrite = write(file_to, buffer, nread);
-	if ((nwrite != nread) || nwrite < 0)
-	{
-		dprint(STDERR_FILENO, "Error: Can't write to %S\n" argv[2]);
-                close(file_from);
-		close(file_to);
-                exit(99);
-	}
-	close(file_from);
-	close(file_to);
+	close_fd(file_from);
+	close_fd(file_to);
 	return (0);
 }
