@@ -20,8 +20,6 @@ void close_fd(int file_des)
 		dprintf(STDERR_FILENO, "Error: Can't close %d\n", file_des);
 		exit(100);
 	}
-	else
-		close(file_des);
 }
 
 /**
