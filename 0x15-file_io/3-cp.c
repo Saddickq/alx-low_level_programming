@@ -15,10 +15,14 @@ void close_fd(int file_des)
 {
 	int outcome = close(file_des);
 
-	if (outcome < 0)
+	if (outcome == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close %d\n", file_des);
 		exit(100);
+	}
+	else
+	{
+		close(file_des);
 	}
 }
 
