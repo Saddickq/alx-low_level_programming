@@ -6,15 +6,15 @@
 */
 size_t dlistint_len(const dlistint_t *h)
 {
-        const dlistint_t *current = h;
-        size_t len = 0;
+	const dlistint_t *current = h;
+	size_t len = 0;
 
-        while (current != NULL)
-        {
-                len++;
-                current = current->next;
-        }
-        return (len);
+	while (current != NULL)
+	{
+		len++;
+		current = current->next;
+	}
+	return (len);
 }
 
 /**
@@ -25,17 +25,17 @@ size_t dlistint_len(const dlistint_t *h)
 */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-        size_t length = dlistint_len(head);
-        dlistint_t *current = NULL;
-        unsigned int i = 0;
+	size_t length = dlistint_len(head);
+	dlistint_t *current = NULL;
+	unsigned int i = 0;
 
-        if (index > length)
-                return (NULL);
-        current = head;
-        while (i < index)
-        {
-                current = current->next;
-                i++;
-        }
-        return (current);
+	if (index > length)
+		return (NULL);
+	current = head;
+	while (i < index)
+	{
+		current = current->next;
+		i++;
+	}
+	return (current);
 }
