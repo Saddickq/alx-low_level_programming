@@ -2,37 +2,43 @@
 #include "main.h"
 /**
  * argstostr - Concatenates all the arguments of a program
- * @ac: The argument count
- * @av: An array of strings containing the arguments
+ * @argc: The argument count
+ * @argv: An array of strings containing the arguments
  * Return: A pointer to the new string, or NULL if it fails
  */
-char *argstostr(int ac, char **av)
+char *argstostr(int argc, char **argv)
 {
-	char *str;
-	int i, j, k, len = 0;
+	char *result;
+	int c, i, j, ia;
 
-	if (ac == 0 || av == NULL)
+	if (argc == 0)
 		return (NULL);
-	for (i = 0; i < ac; i++)
+	for (c = i = 0; i < argc; i++)
 	{
-		for (j = 0; av[i][j]; j++)
-			len++;
-		len++;
+		if (argv[i] == NULL)
+			return (NULL);
+		for (j = 0; argv[i][j] != '\0'; j++)
+			c++;
+		c++;
 	}
-	str = malloc(sizeof(char) * len);
-	if (str == NULL)
-		return (NULL);
-	k = 0;
-	for (i = 0; i < ac; i++)
+	result = malloc((c + 1) * sizeof(char));
+	if (result == NULL)
 	{
-		for (j = 0; av[i][j]; j++)
+		free(result);
+		return (NULL);
+	}
+	for (i = j = ia = 0; ia < c; j++, ia++)
+	{
+		if (argv[i][j] == '\0')
 		{
-			str[k] = av[i][j];
-			k++;
+			result[ia] = '\n';
+			i++;
+			ia++;
+			j = 0;
 		}
-		str[k] = '\n';
-		k++;
+		if (ia < c - 1)
+			result[ia] = argv[i][j];
 	}
-	str[k] = '\0';
-	return (str);
+	result[ia] = '\0';
+	return (result);
 }
