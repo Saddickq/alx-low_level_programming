@@ -45,6 +45,7 @@ hash_node_t *key_exist(hash_node_t *node, const char *key);
 int add_node(hash_node_t **head, const char *key, const char *value);
 char *get_value(hash_node_t **head, const char *key);
 void print_node(hash_node_t *head);
+void free_node(hash_node_t *head);
 
 
 
